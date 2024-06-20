@@ -8,6 +8,7 @@ Used libraries:
   - [Auth.js](https://authjs.dev/)
   - [shadcn/ui](https://ui.shadcn.com/)
   - [Prisma ORM](https://www.prisma.io/)
+  - [Docker](https://www.docker.com/)
   - and some other small libraries, including those, which came with create-next-app
 
 ## Getting Started
