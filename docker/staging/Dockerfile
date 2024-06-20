@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 # This will do the trick, use the corresponding env file for each environment.
-COPY .env.staging.sample .env.production
+COPY .env.staging.example .env.production
 RUN npm run build
 
 # 3. Production image, copy all the files and run next
@@ -32,8 +32,9 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+# Debugging step: create user and verify
+RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001 -G nodejs && \
+    getent passwd nextjs && getent group nodejs
 
 COPY --from=builder /app/public ./public
 
